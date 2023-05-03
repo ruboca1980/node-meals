@@ -13,7 +13,7 @@ exports.validIfExistOrder = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (!order) next(new AppError('Order not found', 404));
+  if (!order) return next(new AppError('Order not found', 404));
 
   req.order = order;
 

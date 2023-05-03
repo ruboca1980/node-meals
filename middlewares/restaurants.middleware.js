@@ -23,7 +23,7 @@ exports.validIfRestaurantExist = catchAsync(async (req, res, next) => {
     ],
   });
 
-  if (!restaurant) next(new AppError('Restaurant not found', 404));
+  if (!restaurant) return next(new AppError('Restaurant not found', 404));
 
   req.restaurant = restaurant;
 
@@ -41,7 +41,7 @@ exports.validReviewOfRestuarant = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (!restaurant) next(new AppError('Restaurant not found', 404));
+  if (!restaurant) return next(new AppError('Restaurant not found', 404));
 
   const review = await Review.findOne({
     where: {
@@ -50,7 +50,7 @@ exports.validReviewOfRestuarant = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (!review) next(new AppError('Review not found', 404));
+  if (!review) return next(new AppError('Review not found', 404));
 
   req.review = review;
 
